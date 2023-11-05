@@ -16,11 +16,27 @@ export const create = async (req, res) => {
 
 export const sendOTP = async (req,res) => {
     try {
-        const response = await userService.sendotp(req.body.email);
-        console.log(response);
+        const response = await userService.sendotp(req.body.email, req.body.otp);
         return res.status(200).json({
             message: "Successfully sent the OTP."
-        })
+        });
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const verifyOTP = async (req, res) => {
+    try {
+        const response = await userService.verifyotp(req.body.email, req.body.otp);
+        if(response){
+            return res.status(200).json({
+              message: "Successfully verified the OTP.",
+            });
+        }else{
+            return res.status(400).json({
+                message: "Wrong OTP."
+            });
+        }
     } catch (error) {
         throw error;
     }

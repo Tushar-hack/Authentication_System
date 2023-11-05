@@ -34,6 +34,21 @@ class UserService{
             throw error;
         }
     }
+
+    async verifyotp (userEmail, otp){
+        try {
+            const user = await this.UserRepository.findByEmail(userEmail);
+            if(!user){
+                throw new Error ('User does not Exist..!');
+            }
+            if(user.otp == otp){
+                return true;
+            }
+            return false;
+        } catch (error) {
+            throw error;
+        }
+    }
 }   
 
 export default UserService;

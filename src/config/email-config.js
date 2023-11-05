@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { email,password } from './config';
+import { email,password } from './config.js';
 
 const sender = nodemailer.createTransport({
     service: 'Gmail',

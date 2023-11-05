@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { otp_generator } from "../utils/helper";
+import { otp_generator } from "../utils/helper.js";
 
 const userSchema = new mongoose.Schema({
     first_name:{
