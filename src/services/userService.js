@@ -49,6 +49,23 @@ class UserService{
             throw error;
         }
     }
+
+    async login(email, password) {
+        try {
+            const user = await this.UserRepository.findByEmail(email);
+            if(!user) {
+                throw new Error("User does not Exist.")
+            }
+            if(!user.comparePassword(password)){
+                throw new Error('Incorrect Password.');
+            }else{
+                return true;
+            }
+            return false;
+        } catch (error) {
+            throw error;
+        }
+    }
 }   
 
 export default UserService;
